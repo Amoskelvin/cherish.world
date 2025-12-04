@@ -2,10 +2,6 @@
 
 A pixel-perfect, fully functional, responsive website for Uniform, a large-scale clothing production company providing uniforms and custom wear for schools and organizations.
 
-## Project Overview
-
-This website is built based on Figma design specifications and serves as an informational platform for client outreach. **Note: This website does NOT support online orders, login pages, user accounts, or registration.**
-
 ## Features
 
 - **5 Main Pages:**
@@ -137,46 +133,11 @@ Edit `css/variables.css` to change the color scheme:
 
 ```css
 :root {
-  --color-primary: #F9A825;  /* Your brand color */
-  --color-navy: #1E3A5F;     /* Dark accent */
+  --color-primary: #F9A825;  
+  --color-navy: #1E3A5F;     
   /* ... */
 }
 ```
-
-### Adding New Pages
-1. Copy an existing HTML file
-2. Update the content
-3. Ensure navigation links in header are updated
-4. Add appropriate meta tags
-
-### Replacing Images
-- Replace images in `/images/` folder
-- Keep the same filenames or update HTML references
-- Recommended formats: JPG for photos, PNG for graphics
-
-## Performance
-
-- No external dependencies
-- Optimized CSS (minimal specificity)
-- Lazy loading ready (can be added for images)
-- Small JavaScript files
-
-## Accessibility
-
-- Semantic HTML5 elements
-- ARIA labels where needed
-- Keyboard navigation support
-- Skip-to-content link
-- Proper heading hierarchy
-
-## Future Enhancements
-
-Potential additions (not included in current version):
-- Backend form submission integration
-- CMS integration
-- Additional product category pages
-- Blog section
-- Multi-language support
 
 ## License
 
@@ -185,9 +146,8 @@ This project is proprietary and confidential.
 ## Contact
 
 For questions or support regarding this website:
-- Email: sales@uniformsolutions.com
-- Phone: +1 (234) 567-890
+- Email: amoskelvintoluwalope2021@gmail.com
+- Phone: +234 905 8014 835
 
 ---
 
-**Built with ❤️ for Uniforma - Quality Uniforms Since 1985**
