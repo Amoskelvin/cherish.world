@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Upgrade Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #2a2a2a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #e55a2b;
+        }
+
+        .slide-counter {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 80px 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Slide 1 - Title */
+        .slide-1 {
+            background: linear-gradient(135deg, #1A2B4A 0%, #2d4a73 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 200px;
+        }
+
+        .slide-1 h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 44pt;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .slide-1 .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24pt;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 60px;
+        }
+
+        .slide-1 .presenter {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18pt;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+        }
+
+        .slide-1 .intro-line {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20pt;
+            color: #FFFFFF;
+            max-width: 70%;
+            line-height: 1.5;
+        }
+
+        .accent-line {
+            width: 100px;
+            height: 2px;
+            background: #FF6B35;
+            margin: 20px auto;
+        }
+
+        /* Slide 2 - Current Situation */
+        .slide-2 {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 60px;
+        }
+
+        .slide-2 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 36pt;
+            color: #1A2B4A;
+            margin-bottom: 40px;
+        }
+
+        .visual-element {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            color: #FF6B35;
+            opacity: 0.3;
+        }
+
+        .bullet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .bullet-icon {
+            font-size: 32px;
+            color: #FF6B35;
+            min-width: 32px;
+        }
+
+        .bullet-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18pt;
+            color: #4A4A4A;
+            line-height: 1.5;
+        }
+
+        .takeaway-box {
+            position: absolute;
+            bottom: 80px;
+            left: 100px;
+            right: 100px;
+            background: #F5F5F5;
+            border-left: 4px solid #FF6B35;
+            padding: 20px 30px;
+        }
+
+        .takeaway-box p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 20pt;
+            color: #1A2B4A;
+            font-style: italic;
+        }
+
+        /* Slide 3 - Research Insights */
+        .slide-3 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 38pt;
+            color: #1A2B4A;
+            margin-bottom: 10px;
+        }
+
+        .underline {
+            width: 60px;
+            height: 3px;
+            background: #FF6B35;
+            margin-bottom: 50px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card .stat {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 48pt;
+            margin-bottom: 15px;
+        }
+
+        .stat-card .label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16pt;
+            color: #4A4A4A;
+            line-height: 1.4;
+        }
+
+        .bottom-banner {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1A2B4A;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 100px;
+        }
+
+        .bottom-banner p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 20pt;
+            color: white;
+            text-align: center;
+        }
+
+        /* Slide 4 - Opportunity */
+        .slide-4 {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 60px;
+        }
+
+        .slide-4 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 38pt;
+            color: #1A2B4A;
+            margin-bottom: 50px;
+        }
+
+        .numbered-list {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .numbered-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .number-circle {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FF6B35;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18pt;
+        }
+
+        .right-visual {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .growth-icon {
+            font-size: 200px;
+            color: #FF6B35;
+            opacity: 0.8;
+        }
+
+        .tagline-box {
+            background: rgba(255, 107, 53, 0.15);
+            border: 2px solid #FF6B35;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .tagline-box p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 20pt;
+            color: #1A2B4A;
+            line-height: 1.4;
+        }
+
+        /* Slide 5 - Package */
+        .slide-5 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 38pt;
+            color: #1A2B4A;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .package-box {
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .package-box.gray {
+            background: #F5F5F5;
+        }
+
+        .package-box.white {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .package-box.orange-border {
+            border-left: 5px solid #FF6B35;
+        }
+
+        .package-box.teal-border {
+            border-left: 5px solid #00B4D8;
+        }
+
+        .box-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .box-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 22pt;
+            color: #1A2B4A;
+            margin-bottom: 20px;
+        }
+
+        .box-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .box-bullets li {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16pt;
+            color: #4A4A4A;
+            margin-left: 20px;
+        }
+
+        .box-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16pt;
+            color: #4A4A4A;
+            line-height: 1.5;
+        }
+
+        /* Slide 6 - Why Me */
+        .slide-6 {
+            display: grid;
+            grid-template-columns: 35% 65%;
+            gap: 0;
+            padding: 0;
+        }
+
+        .slide-6-left {
+            background: linear-gradient(135deg, rgba(26, 43, 74, 0.8), rgba(45, 74, 115, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 720"><rect fill="%231A2B4A" width="400" height="720"/><circle cx="200" cy="360" r="150" fill="%23FF6B35" opacity="0.1"/></svg>');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 180px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-6-right {
+            padding: 80px 100px 80px 60px;
+        }
+
+        .slide-6-right h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 38pt;
+            color: #1A2B4A;
+            margin-bottom: 50px;
+        }
+
+        .checkmark-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .checkmark-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .checkmark {
+            min-width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #FF6B35;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .emphasis-box {
+            background: #FF6B35;
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+        }
+
+        .emphasis-box p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 22pt;
+            color: white;
+        }
+
+        /* Slide 7 - Close */
+        .slide-7 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .slide-7 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 40pt;
+            color: #1A2B4A;
+            margin-bottom: 60px;
+        }
+
+        .process-flow {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .step-card {
+            width: 280px;
+            height: 220px;
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 32pt;
+        }
+
+        .step-icon {
+            font-size: 50px;
+            text-align: left;
+        }
+
+        .step-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16pt;
+            color: #4A4A4A;
+            line-height: 1.4;
+            text-align: left;
+            flex: 1;
+        }
+
+        .arrow {
+            font-size: 40px;
+            color: #FF6B35;
+        }
+
+        .final-statement {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 36pt;
+            color: #1A2B4A;
+        }
+
+        .final-underline {
+            width: 100px;
+            height: 3px;
+            background: #FF6B35;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="previousSlide()">← Previous</button>
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / 7
+        </div>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide slide-1 active">
+            <h1>Digital Upgrade Proposal<br>for Our Clothing Company</h1>
+            <div class="accent-line"></div>
+            <p class="subtitle">Website • Logo • Video Advert</p>
+            <p class="presenter">Presented by: Kelvin</p>
+            <p class="intro-line">A modern digital presence that strengthens our credibility and expands our reach across Nigeria.</p>
+        </div>
+
+        <!-- Slide 2: Current Situation -->
+        <div class="slide slide-2">
+            <div>
+                <h2>What's Holding<br>Us Back</h2>
+                <div class="visual-element">⛔</div>
+            </div>
+            <div>
+                <div class="bullet-list">
+                    <div class="bullet-item">
+                        <div class="bullet-icon">📍</div>
+                        <div class="bullet-text">Limited reach—only word-of-mouth or in-person</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet-icon">🔍</div>
+                        <div class="bullet-text">No online presence for schools to find us</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet-icon">🏷️</div>
+                        <div class="bullet-text">Outdated or no logo to stand out</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet-icon">📊</div>
+                        <div class="bullet-text">Competitors with websites look more credible</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet-icon">🚶</div>
+                        <div class="bullet-text">Harder to show off what we've done</div>
+                    </div>
+                </div>
+            </div>
+            <div class="takeaway-box">
+                <p>We're doing great work, but we're invisible to modern decision-makers.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Research Insights -->
+        <div class="slide slide-3">
+            <h2>What Research Shows</h2>
+            <div class="underline"></div>
+            <div class="card-grid">
+                <div class="stat-card">
+                    <div class="icon">📉</div>
+                    <div class="stat" style="color: #FF6B35;">1.5–2×</div>
+                    <div class="label">Offline-only SMEs grow slower</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">🔍</div>
+                    <div class="stat" style="color: #00B4D8;">97–98%</div>
+                    <div class="label">of consumers search online first</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">📈</div>
+                    <div class="stat" style="color: #FF6B35;">20–30%</div>
+                    <div class="label">Digital marketing boosts acquisition + 25% sales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">✓</div>
+                    <div class="stat" style="color: #1A2B4A;">Trust ↑</div>
+                    <div class="label">Websites increase customer trust</div>
+                </div>
+            </div>
+            <div class="bottom-banner">
+                <p>Schools and PTAs now expect suppliers to look organized and credible.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Opportunity -->
+        <div class="slide slide-4">
+            <div>
+                <h2>What We Stand<br>to Gain</h2>
+                <div class="numbered-list">
+                    <div class="numbered-item">
+                        <div class="number-circle">1</div>
+                        <div class="bullet-text">24/7 visibility</div>
+                    </div>
+                    <div class="numbered-item">
+                        <div class="number-circle">2</div>
+                        <div class="bullet-text">Instant credibility</div>
+                    </div>
+                    <div class="numbered-item">
+                        <div class="number-circle">3</div>
+                        <div class="bullet-text">Easier referrals (link/video)</div>
+                    </div>
+                    <div class="numbered-item">
+                        <div class="number-circle">4</div>
+                        <div class="bullet-text">Proof-of-work available online</div>
+                    </div>
+                    <div class="numbered-item">
+                        <div class="number-circle">5</div>
+                        <div class="bullet-text">Attract larger and private schools</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-visual">
+                <div class="growth-icon">📈</div>
+                <div class="tagline-box">
+                    <p>A digital presence doesn't replace our system — it multiplies it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Package -->
+        <div class="slide slide-5">
+            <h2>The Complete Digital Upgrade Package</h2>
+            <div class="package-grid">
+                <div class="package-box gray orange-border">
+                    <div class="box-icon" style="color: #FF6B35;">🎨</div>
+                    <div class="box-title">Logo & Brand Identity</div>
+                    <ul class="box-bullets">
+                        <li>Modern logo</li>
+                        <li>Color palette & fonts</li>
+                        <li>Consistent branding</li>
+                    </ul>
+                </div>
+                <div class="package-box white teal-border">
+                    <div class="box-icon" style="color: #00B4D8;">🌐</div>
+                    <div class="box-title">Professional Website</div>
+                    <ul class="box-bullets">
+                        <li>Homepage, About Us, Product categories, Portfolio</li>
+                        <li>Clients served, Quote form</li>
+                        <li>WhatsApp integration</li>
+                        <li>Mobile-friendly</li>
+                    </ul>
+                </div>
+                <div class="package-box gray orange-border">
+                    <div class="box-icon" style="color: #FF6B35;">▶️</div>
+                    <div class="box-title">Video Advert</div>
+                    <div class="box-description">Showcasing uniforms, process, packaging, and students. For meetings, WhatsApp, and PTA presentations.</div>
+                </div>
+                <div class="package-box white teal-border">
+                    <div class="box-icon" style="color: #00B4D8;">🖱️</div>
+                    <div class="box-title">Interactive Prototype</div>
+                    <ul class="box-bullets">
+                        <li>Sample homepage</li>
+                        <li>Logo drafts</li>
+                        <li>Demo flow</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Why Me -->
+        <div class="slide slide-6">
+            <div class="slide-6-left">💻</div>
+            <div class="slide-6-right">
+                <h2>Why I Should Handle This</h2>
+                <div class="checkmark-list">
+                    <div class="checkmark-item">
+                        <div class="checkmark">✓</div>
+                        <div class="bullet-text">I understand the business deeply</div>
+                    </div>
+                    <div class="checkmark-item">
+                        <div class="checkmark">✓</div>
+                        <div class="bullet-text">Young, tech-driven, and modern-thinking</div>
+                    </div>
+                    <div class="checkmark-item">
+                        <div class="checkmark">✓</div>
+                        <div class="bullet-text">I can build website + logo + video</div>
+                    </div>
+                    <div class="checkmark-item">
+                        <div class="checkmark">✓</div>
+                        <div class="bullet-text">Cost-effective vs hiring multiple experts</div>
+                    </div>
+                    <div class="checkmark-item">
+                        <div class="checkmark">✓</div>
+                        <div class="bullet-text">I'll maintain & update everything long-term</div>
+                    </div>
+                </div>
+                <div class="emphasis-box">
+                    <p>This is a family project — I'm invested in its success.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Close -->
+        <div class="slide slide-7">
+            <h2>Next Step</h2>
+            <div class="process-flow">
+                <div class="step-card">
+                    <div class="step-number" style="color: #FF6B35;">01</div>
+                    <div class="step-icon" style="color: #FF6B35;">📋</div>
+                    <div class="step-text">This is the first version of the website; I'll work on the logo and video advert.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <div class="step-number" style="color: #00B4D8;">02</div>
+                    <div class="step-icon" style="color: #00B4D8;">🔄</div>
+                    <div class="step-text">We'll review, refine, and launch together.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <div class="step-number" style="color: #FF6B35;">03</div>
+                    <div class="step-icon" style="color: #FF6B35;">🚀</div>
+                    <div class="step-text">This digital foundation will support the business for years.</div>
+                </div>
+            </div>
+            <div class="final-statement">Let's modernize the business — starting now.</div>
+            <div class="final-underline"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 7;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+    </script>
+</body>
+</html>
